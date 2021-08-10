@@ -6,8 +6,9 @@ const LocalStrategy = require('passport-local').Strategy;
 // funcion middleware de autenticacion
 const auth = () => {
     return (req, res, next) => {
+        console.log(req.body);
         passport.authenticate('local', (error, user, info) => {
-            if(error) res.status(400).json({"statusCode" : 200 ,"message" : error});
+            if(error) res.status(400).json({"statusCode" : 400 ,"message" : error});
             req.login(user, function(error) {
                 if (error) return next(error);
                 next();
@@ -17,7 +18,7 @@ const auth = () => {
 }
 
 // esta ruta utiliza el middleware auth() para autenticar. Si autentica continua, sino no.
-router.post('/', auth() , (req, res) => {
+router.post('', auth() , (req, res) => {
     res.status(200).json({"statusCode" : 200 ,"user" : req.user});
 });
 
