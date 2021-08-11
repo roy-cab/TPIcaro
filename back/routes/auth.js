@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const conexion = require('../bbdd/conexion');
 
 // funcion middleware de autenticacion
 const auth = () => {
     return (req, res, next) => {
-        console.log(req.body);
+        console.log("recibo del front: "+JSON.stringify(req.body));
         passport.authenticate('local', (error, user, info) => {
             if(error) res.status(400).json({"statusCode" : 400 ,"message" : error});
             req.login(user, function(error) {

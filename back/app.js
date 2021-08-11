@@ -6,17 +6,45 @@ const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 const cors = require('cors');
+const conexion = require('./bbdd/conexion');
 
 // estrategia de autenticacion.. usamos la local (usuario y contraseña)
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-        if(username === "admin" && password === "admin"){
+    passport.use(new LocalStrategy(
+    async function(username, password, done) {
+
+        passBBDD = await buscarUsuario(username);
+        console.log("recibido = " + password + " , base = " + passBBDD)
+        if(password === passBBDD){
+            console.log('Log ok')
             return done(null, username);
         } else {
+            console.log('Logueo no realizado')
             return done("unauthorized access", false);
         }
     }
 ));
+
+function buscarUsuario(nombre_usuario) {
+
+    const qry = "select PassUsuario from usuarios where NombreUsuario = '" +  nombre_usuario +"'";
+    console.log(qry)
+    return new Promise((resolve, reject) => {
+    conexion.query(qry, function (error, datos, filas) {
+
+        if (error || datos.length === 0){ //arreglar aca para que cuando no encuentre el usuario no se rompa
+            err = new Error('Usuario no encontrado');
+            reject(err)
+        }
+        else{
+            pass = datos[0].PassUsuario.toString();
+            console.log("clave en base = " + pass)
+            // return pass;
+            resolve(pass)
+        }
+    })
+
+    })
+}
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
