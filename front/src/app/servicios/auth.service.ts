@@ -9,6 +9,7 @@ export class AuthService {
 constructor(private http: HttpClient) { }
 
 us = {}
+ruta = 'api/authenticate'
 
 public isAuthenticated() : Boolean {
   let userData = localStorage.getItem('userInfo')
@@ -26,7 +27,15 @@ public validate(usuario: string, pass: string) {
   console.log('llego acá:'+usuario+','+pass)
   this.us = {'username' : usuario, 'password' : pass}
   console.log(this.us)
-  return this.http.post('/api/authenticate', this.us);
+  console.log(this.ruta)
+
+
+
+  return this.http.post(this.ruta, this.us,{responseType: 'json'});
+}
+
+public simpleGet() {
+  return this.http.get('/', {responseType: 'text'});
 }
 
 }
