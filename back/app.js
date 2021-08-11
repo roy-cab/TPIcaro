@@ -32,8 +32,9 @@ function buscarUsuario(nombre_usuario) {
     conexion.query(qry, function (error, datos, filas) {
 
         if (error || datos.length === 0){ //arreglar aca para que cuando no encuentre el usuario no se rompa
-            err = new Error('Usuario no encontrado');
-            reject(err)
+            // err = new Error('Usuario no encontrado');
+            // reject(err)
+            resolve(0)
         }
         else{
             pass = datos[0].PassUsuario.toString();
