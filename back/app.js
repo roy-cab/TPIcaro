@@ -5,6 +5,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
+const cors = require('cors');
 
 // estrategia de autenticacion.. usamos la local (usuario y contraseña)
 passport.use(new LocalStrategy(
@@ -17,6 +18,15 @@ passport.use(new LocalStrategy(
     }
 ));
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+
+
 passport.serializeUser(function(user, done) {
     if(user) done(null, user);
 });
@@ -28,7 +38,9 @@ passport.deserializeUser(function(id, done) {
 app.use(session({ secret: 'anything', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
+app.use(cors());
 
 // función middleware para validar si está logueado.
 const isLoggedIn = (req, res, next) => {
@@ -42,6 +54,15 @@ const isLoggedIn = (req, res, next) => {
 
 // configuramos las rutas
 app.use('/api/authenticate', require('./routes/auth'));
+
+//prueba get
+app.get('', function(req, res) {
+    
+        console.log("Consulta exitosa");
+        res.status(200).send("funcionó");
+   
+
+  });
 
 // iniciamos al servidor.
 app.listen(port, (error) => {

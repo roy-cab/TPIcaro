@@ -1,3 +1,5 @@
+import { compileNgModule } from '@angular/compiler';
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    console.log("datos al apretar boton:" + this.usuario+','+this.pass)
     // this._authService.validate(this.usuario, this.pass)
     // .then((response) => {
     //   this.user.usuario = this.usuario;
@@ -39,6 +42,7 @@ export class LoginComponent implements OnInit {
   this._authService.validate(this.usuario, this.pass).subscribe(
     res => {
       console.log('algo')
+      console.log(res);
       this.user.usuario = this.usuario;
       this.user.clave = this.pass;
       this._authService.setUserInfo(JSON.stringify(this.user));
@@ -48,6 +52,15 @@ export class LoginComponent implements OnInit {
   )
   }
 
+  prueba(){
+    this._authService.simpleGet().subscribe(
+      res => {
+        console.log('entre al res')
+       console.log(res)
+      },
+      err => console.log("entro al error = "+err.message)
+    )
+  }
 
 
 }
