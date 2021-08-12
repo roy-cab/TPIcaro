@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container container-fluid">
+      <a class="navbar-brand"> RyM Soft Code </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+            <!-- si está logueado mostramos menú -->
+          <ng-container *ngIf="_authService.isAuthenticated()">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/consultaStock" routerLinkActive="active">Bandeja de entrada</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/nuevoMemorando" routerLinkActive="active">Nuevo memorando</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="" routerLinkActive="active" (click)="_authService.logout()">Salir</a>
+            </li>
+          </ng-container>
+          <!-- si no está logueado mostramos opcion de registro -->
+          <ng-container *ngIf="!_authService.isAuthenticated()">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/nuevoUsuario" routerLinkActive="active">Registrarse</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="" routerLinkActive="active">Inicio de sesión</a>
+              </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </nav>

@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
 
   this._authService.validate(this.usuario, this.pass).subscribe(
     res => {
-      console.log('algo')
       console.log(res);
       this.user.usuario = this.usuario;
       this.user.clave = this.pass;
@@ -55,8 +54,7 @@ export class LoginComponent implements OnInit {
   prueba(){
     this._authService.simpleGet().subscribe(
       res => {
-        console.log('entre al res')
-       console.log(res)
+      console.log(res)
       },
       err => console.log("entro al error = "+err.message)
     )

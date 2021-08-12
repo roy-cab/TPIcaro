@@ -12,12 +12,18 @@ import { HomeComponent } from './componentes/home/home.component';
 // servicios y guardas
 import { AuthService } from './servicios/auth.service';
 import { AuthGuard } from './guardas/auth.guard';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { RegistroComponent } from './componentes/registro/registro.component';
+import { NuevoMensajeComponent } from './componentes/nuevo-mensaje/nuevo-mensaje.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent,
+    RegistroComponent,
+    NuevoMensajeComponent
   ],
   imports: [
     BrowserModule,

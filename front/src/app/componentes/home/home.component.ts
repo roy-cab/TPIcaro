@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   //variable
-  ListaMemorandos: Memorandos[] = [];
+  ListaMemorandos: any[] = [];
 
 
   constructor(private MemorandoService: MemorandosService, private router:Router) { 
@@ -20,8 +20,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarMemorandos();
+    
   }
-
+  
   listarMemorandos()
   {
     this.MemorandoService.getMemorandos().subscribe(
