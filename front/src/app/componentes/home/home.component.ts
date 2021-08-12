@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {MemorandosService, Memorandos} from '../../servicios/memorandos.service'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  //variable
+  ListaMemorandos: Memorandos[] = [];
+
+
+  constructor(private MemorandoService: MemorandosService, private router:Router) { 
+
+  }
 
   ngOnInit(): void {
+    this.listarMemorandos();
+  }
+
+  listarMemorandos()
+  {
+    this.MemorandoService.getMemorandos().subscribe(
+      res=>{
+        console.log(res)
+        this.ListaMemorandos=<any>res;
+      },
+      err => console.log(err)
+    );
   }
 
 }

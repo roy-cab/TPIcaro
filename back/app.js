@@ -80,9 +80,15 @@ const isLoggedIn = (req, res, next) => {
     }
     return res.status(400).json({"statusCode" : 400, "message" : "not authenticated"})
 }
+// //config
+// app.set('port',port);
 
 // configuramos las rutas
 app.use('/api/authenticate', require('./routes/auth'));
+app.use('/api/memorandos', require('./routes/rutamemorando'));
+
+//tipos de datos a admitir
+app.use(express.json());
 
 //prueba get
 app.get('', function(req, res) {

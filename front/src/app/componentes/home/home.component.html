@@ -1,1 +1,25 @@
-<p>home works!</p>
+<div class="container">
+  <p class="text-center">LISTA DE MENSAJES</p>
+    <table class="table table-striped table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Detalle</th>
+            <th scope="col">Remitente</th>
+            <th scope="col">Destinatario</th>
+            <th scope="col">Mensaje</th>
+            <th scope="col">Fecha de Envio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let memorando of ListaMemorandos">
+            <th>{{memorando.idmemorando}}</th>
+            <td>{{memorando.detalle}}</td>
+            <td>{{memorando.remitente}}</td>
+            <td>{{memorando.destinatario}}</td>
+            <td>{{memorando.mensaje}}</td>
+            <td>{{memorando.fechaenvio}}</td>
+          </tr>
+        </tbody>
+    </table>
+</div>
