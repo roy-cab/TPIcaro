@@ -8,6 +8,7 @@ export class MemorandosService {
   url= '/api/memorandos';
   urlUsers= '/api/usuarios';
   urlNuevoUsuario =  '/api/usuarios/nuevoUsuario';
+  urlGetIdUsuario =  '/api/usuarios/getId';
 
   constructor(private http: HttpClient) { }
 
@@ -25,6 +26,12 @@ export class MemorandosService {
   postUsuario(unUsuario: any){
     return this.http.post(this.urlNuevoUsuario, unUsuario);
   }
+
+    //post usuario
+    postIdUsuario(unUsuario: any){
+      console.log(unUsuario)
+      return this.http.post(this.urlGetIdUsuario, JSON.parse(unUsuario));
+    }
 
   addMensaje(memorando:Memorandos)
   {

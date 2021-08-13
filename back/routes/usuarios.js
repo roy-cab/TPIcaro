@@ -32,5 +32,30 @@ router.post('/nuevoUsuario', (req, res) => {
 });
 
 
+//post usuarios
+router.post('/getId', (req, res) => {
+    console.log(req.body)
+    console.log("Solicita id del usuario = " + JSON.stringify(req.body))
+    let sql = 'Select IdUsuario from usuarios where NombreUsuario = "' + req.body.usuario + '"'
+    conexion.query(sql, (err, rows, fields) => {
+        try {
+            if (err) {
+                // console.log("error al realizar el get: " + sql)
+                // res.status(400).send("Error");
+                throw new error ("Aca pasó un error: ", err);
+            } else {
+                console.log("Id obtenido correctamente: " + rows[0].IdUsuario.toString())
+                res.status(200).send(rows[0].IdUsuario.toString());
+            }
+
+        } catch (e) {
+            console.log("Error al realizar el get: " + sql)
+            console.log("Mensaje de error: " + e.message)
+            res.status(400).send("Usuario inexistente.");
+        }
+
+    })
+});
+
 
 module.exports = router;

@@ -10,7 +10,7 @@ router.get('/',(req,res)=>{
         if(err) throw err;
         
         else{
-            console.log(rows[0])
+            // console.log(rows[0])
             res.json(rows)
         }
     })

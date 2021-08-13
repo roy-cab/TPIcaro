@@ -23,6 +23,4 @@ router.post('', auth() , (req, res) => {
 });
 
 
-router.post('/nuevoUsuario', auth(), )
-
 module.exports = router;
