@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   //variable
   ListaMemorandos: any[] = [];
-
+  
 
   constructor(private MemorandoService: MemorandosService, private router:Router) { 
 

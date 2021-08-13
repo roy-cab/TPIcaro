@@ -1,1 +1,25 @@
-<p>nuevo-mensaje works!</p>
+<div class="container">
+    <p>Nuevo Mensaje</p>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <form>
+                <label class="form-label">Seleccione Destinatario</label>
+                <select>
+                    <!-- <option>{{usuarios.UsuarioDestinatario}}</option> -->
+                    <option *ngFor="let usuarios of ListaUsuarios" value="{{usuarios.IdUsuario}}">{{usuarios.NombreUsuario}}</option>
+                </select>
+                <br>
+                <br>
+                <label class="form-label">Asunto</label>
+                <input type="text" class="form-control" name="nombre">
+                <br>
+                <br>
+                <label class="form-label">Mensaje</label>
+                <input [(ngModel)]="memorando.mensaje" type="text" class="form-control" name="nombre">
+                <br>
+                <br>
+                <button class="bt btn-primary" (click)="enviar()">Enviar</button>
+            </form>
+        </div>
+</div>

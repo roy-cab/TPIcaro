@@ -86,6 +86,7 @@ const isLoggedIn = (req, res, next) => {
 // configuramos las rutas
 app.use('/api/authenticate', require('./routes/auth'));
 app.use('/api/memorandos', require('./routes/rutamemorando'));
+app.use('/api/usuarios', require('./routes/rutamemorando'));
 
 //tipos de datos a admitir
 app.use(express.json());
