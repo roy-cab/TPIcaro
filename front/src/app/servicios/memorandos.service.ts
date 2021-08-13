@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MemorandosService {
   url= '/api/memorandos';
-  urlUsers= '/api/memorandos/usuarios';
+  urlUsers= '/api/usuarios';
+  urlNuevoUsuario =  '/api/usuarios/nuevoUsuario';
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +19,11 @@ export class MemorandosService {
   // get usuarios
   getUsuarios(){
     return this.http.get(this.urlUsers);
+  }
+
+  //post usuario
+  postUsuario(unUsuario: any){
+    return this.http.post(this.urlNuevoUsuario, unUsuario);
   }
 
   addMensaje(memorando:Memorandos)

@@ -22,4 +22,7 @@ router.post('', auth() , (req, res) => {
     res.status(200).json({"statusCode" : 200 ,"user" : req.user});
 });
 
+
+router.post('/nuevoUsuario', auth(), )
+
 module.exports = router;

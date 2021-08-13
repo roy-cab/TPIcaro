@@ -3,26 +3,34 @@
     <form>
         <div class="mb-3">
           <label for="usuario" class="form-label fw-bold fs-5">Nombre de Usuario</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" name="nuevo_usuario"  aria-describedby="emailHelp" [(ngModel)]='nuevo_usuario'>
+          <input type="text" class="form-control" id="exampleInputUsuario" name="nuevo_usuario"  aria-describedby="emailHelp" [(ngModel)]='nuevo_usuario'>
         </div>
         <div class="mb-3">
-            <label for="usuario" class="form-label fw-bold fs-5">País</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" name="pais"  aria-describedby="emailHelp" [(ngModel)]='pais'>
+            <label for="pais" class="form-label fw-bold fs-5">País</label>
+            <select class="form-select" name="pais" [(ngModel)]="pais">
+              <option *ngFor="let pais of listadoPaises" value="{{pais.IdPais}}">
+                {{pais.NombrePais}}
+              </option>
+          </select>
           </div>
           <div class="mb-3">
-            <label for="usuario" class="form-label fw-bold fs-5">Ciudad</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" name="ciudad"  aria-describedby="emailHelp" [(ngModel)]='ciudad'>
+            <label for="ciudad" class="form-label fw-bold fs-5">Ciudad</label>
+            <select class="form-select" name="ciudad" [(ngModel)]="ciudad">
+              <option *ngFor="let ciudad of listadoCiudades" value="{{ciudad.IdCiudad}}">
+                {{ciudad.NombreCiudad}}
+              </option>
+          </select>
           </div>
         <div class="mb-3">
           <label for="pass" class="form-label fw-bold fs-5">Contraseña elegida</label>
           <input type="password" class="form-control" id="pass" name= "nueva_pass" [(ngModel)]='nueva_pass'>
         </div>
         <div class="mb-3">
-            <label for="pass" class="form-label fw-bold fs-5">Confirmar contraseña</label>
-            <input type="password" class="form-control" id="pass" name= "confirma_pass" [(ngModel)]='confirma_pass'>
+            <label for="repass" class="form-label fw-bold fs-5">Confirmar contraseña</label>
+            <input type="password" class="form-control" id="repass" name= "confirma_pass" [(ngModel)]='confirma_pass'>
           </div>
         <div class="mb-3 pt-1 d-grid gap-2">
-        <button type="submit" class="btn btn-primary fs-4">Registrar</button>
+        <button type="submit" class="btn btn-primary fs-4" (click)="crearUsuario()">Registrar</button>
     </div>
       </form>
 

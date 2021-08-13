@@ -47,6 +47,7 @@ function buscarUsuario(nombre_usuario) {
     })
 }
 
+// para que permita peticiones
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
@@ -86,7 +87,9 @@ const isLoggedIn = (req, res, next) => {
 // configuramos las rutas
 app.use('/api/authenticate', require('./routes/auth'));
 app.use('/api/memorandos', require('./routes/rutamemorando'));
-app.use('/api/usuarios', require('./routes/rutamemorando'));
+app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/ubicaciones', require('./routes/ubicaciones'));
+
 
 //tipos de datos a admitir
 app.use(express.json());

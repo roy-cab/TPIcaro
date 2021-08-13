@@ -3,6 +3,7 @@ import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,10 @@ import { AuthService } from 'src/app/servicios/auth.service';
 
 
 export class LoginComponent implements OnInit {
-  
-  
+
+
   constructor(private _authService: AuthService, private router: Router) { }
-  
+
   usuario: string = '';
   pass: string = '';
 
@@ -28,37 +29,48 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login(){
-    console.log("datos al apretar boton:" + this.usuario+','+this.pass)
-    // this._authService.validate(this.usuario, this.pass)
-    // .then((response) => {
-    //   this.user.usuario = this.usuario;
-    //   this.user.clave = this.pass;
-    //   this._authService.setUserInfo(JSON.stringify(this.user));
-    //   this.router.navigate(['home']);
-    // })
-    // .catch((error) => console.log('error: '+ error))
-
-  this._authService.validate(this.usuario, this.pass).subscribe(
-    res => {
-      console.log(res);
-      this.user.usuario = this.usuario;
-      this.user.clave = this.pass;
-      this._authService.setUserInfo(JSON.stringify(this.user));
-      this.router.navigate(['home']);
-    },
-    err => console.log(err)
-  )
-  }
-
-  prueba(){
-    this._authService.simpleGet().subscribe(
+  login() {
+    this._authService.validate(this.usuario, this.pass).subscribe(
       res => {
-      console.log(res)
+        this.user.usuario = this.usuario;
+        this.user.clave = this.pass;
+        this.mensajeExito();
+        this._authService.setUserInfo(JSON.stringify(this.user));
+        this.router.navigate(['home']);
       },
-      err => console.log("entro al error = "+err.message)
+      err => {
+        console.log(err);
+        this.mensajeError();
+      }
     )
   }
 
+  prueba() {
+    this._authService.simpleGet().subscribe(
+      res => {
+        console.log(res)
+      },
+      err => console.log("entro al error = " + err.message)
+    )
+  }
 
+  async mensajeError() {
+    await Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Datos Incorrectos!',
+      showConfirmButton: false,
+      timer: 1000,
+    })
+  }
+
+  async mensajeExito() {
+    await Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Bienvenido ' + this.user.usuario,
+      showConfirmButton: false,
+      timer: 1000
+    })
+  }
 }

@@ -16,20 +16,6 @@ router.get('/',(req,res)=>{
     })
 });
 
-//get usuarios
-router.get('/usuarios',(req,res)=>{
-    let sql='select IdUsuario, NombreUsuario from usuarios'
-    conexion.query(sql,(err, rows, fields)=>{
-        if(err) throw err;
-        
-        else{
-            console.log(rows[0])
-            res.json(rows)
-        }
-    })
-});
-
-
 // enviar mensaje
 router.post('/',(req,res)=>{
     const {_detalle,_remitente,_destinatario,_mensaje } = req.body
