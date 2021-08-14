@@ -28,8 +28,6 @@ public setUserInfo(user: string){
 public validate(usuario: string, pass: string) {
   console.log('Se solicitará loqueo con estas credenciales: '+usuario+','+pass)
   this.us = {'username' : usuario, 'password' : pass}
-  console.log(this.us)
-  console.log(this.ruta)
   return this.http.post(this.ruta, this.us,{responseType: 'json'});
 }
 

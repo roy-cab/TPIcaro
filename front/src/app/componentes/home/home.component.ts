@@ -16,21 +16,22 @@ export class HomeComponent implements OnInit {
   idUsuario: any;
   loading: boolean = false
 
-  constructor(private MemorandoService: MemorandosService, private router: Router) {
+  constructor(private MemorandoService: MemorandosService, 
+              private router: Router) {
 
   }
 
 
   ngOnInit(): void {
-    this.loading = true
-    this.usuario = localStorage.getItem('userInfo')
-    this.getIdUsuario()
-    this.listarMemorandos();
+    this.loading = true;
+    this.usuario = localStorage.getItem('userInfo');
+    this.getIdUsuario();
+    // this.listarMemorandos();
 
   }
 
   listarMemorandos() {
-    this.MemorandoService.getMemorandos().subscribe(
+    this.MemorandoService.postMemorandos(this.idUsuario).subscribe(
       res => {
         console.log(res)
         this.ListaMemorandos = <any>res;
@@ -45,6 +46,7 @@ export class HomeComponent implements OnInit {
       res => {
         console.log(res)
         this.idUsuario = <any>res;
+        this.listarMemorandos();
         this.loading = false
       },
       err => console.log(err)

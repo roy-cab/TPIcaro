@@ -16,6 +16,25 @@ router.get('/',(req,res)=>{
     })
 });
 
+//post memorandos
+router.post('/getMemorandos',(req,res)=>{
+    console.log("Id usuario logueado para consultar memorandos: "+req.body.IdUsuario  )
+    let sql='select dm.IdDetalle IdMemorando, dest.NombreUsuario Destinatario, remi.NombreUsuario Remitente, \
+    dm.Mensaje, date(dm.FechaEnvio) as FechaEnvio \
+    from tpicaro.detallememorandos dm  \
+    left join tpicaro.usuarios dest on dest.IdUsuario = dm.UsuarioDestinatario \
+    left join tpicaro.usuarios remi on remi.IdUsuario = dm.UsuarioRemitente \
+    where dm.UsuarioRemitente = ' + req.body.IdUsuario + '  or dm.UsuarioDestinatario = ' + req.body.IdUsuario
+    conexion.query(sql,(err, rows, fields)=>{
+        if(err) throw err;
+        
+        else{
+            // console.log(rows[0])
+            res.json(rows)
+        }
+    })
+});
+
 // enviar mensaje
 router.post('/',(req,res)=>{
     const {_detalle,_remitente,_destinatario,_mensaje } = req.body
