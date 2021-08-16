@@ -52,14 +52,16 @@ export class Memorandos {
   private _destinatario: String;
   private _mensaje: String;
   private _fechaenvio: Date;
+  private _tipo: String;
 
-  constructor(idmemorando: number, detalle: String, remitente: String, destinatario: String, mensaje: String, fechaenvio: Date) {
+  constructor(idmemorando: number, detalle: String, remitente: String, destinatario: String, mensaje: String, fechaenvio: Date, tipo: String) {
     this._id = idmemorando;
     this._detalle = detalle;
     this._remitente = remitente;
     this._destinatario = destinatario;
     this._mensaje = mensaje;
     this._fechaenvio = fechaenvio;
+    this._tipo = tipo;
   }
 
   public get idmemorando(): number {

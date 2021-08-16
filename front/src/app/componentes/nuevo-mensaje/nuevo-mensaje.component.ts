@@ -13,7 +13,7 @@ export class NuevoMensajeComponent implements OnInit {
   fecha = new Date()
   hoy = this.fecha.getDate()
   
-  memorando = new Memorandos(0,"","","","",this.fecha)
+  memorando = new Memorandos(0,"","","","",this.fecha,"")
 
   ListaUsuarios : any[] = [];
 

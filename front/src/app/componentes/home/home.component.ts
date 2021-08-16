@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
       res => {
         console.log(res)
         this.ListaMemorandos = <any>res;
+        this.procesaMemorandos()
       },
       err => console.log(err)
     );
@@ -53,8 +54,16 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  prueba() {
-    console.log(this.usuario)
+  procesaMemorandos() : any{
+
+    let idDetalle: any;
+    for (let i = 0 ; i < this.ListaMemorandos.length ; i++) {
+      
+      idDetalle = this.ListaMemorandos;
+
+
+    }
   }
+
 
 }

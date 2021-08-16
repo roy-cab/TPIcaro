@@ -3,8 +3,8 @@
     <table class="table table-striped table-hover table-sm mt-5">
         <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Detalle</th>
+            <!-- <th scope="col">Id</th> -->
+            <th scope="col">Bandeja</th>
             <th scope="col">Remitente</th>
             <th scope="col">Destinatario</th>
             <th scope="col">Mensaje</th>
@@ -13,8 +13,9 @@
         </thead>
         <tbody>
           <tr *ngFor="let memorando of ListaMemorandos">
-            <th>{{memorando.Id}}</th>
-            <td>{{memorando.IdDetalle}}</td>
+            <!-- <th>{{memorando.Id}}</th>
+            <td>{{memorando.IdDetalle}}</td> -->
+            <td>{{memorando.Tipo}}</td>
             <td>{{memorando.Remitente}}</td>
             <td>{{memorando.Destinatario}}</td>
             <td>{{memorando.Mensaje}}</td>
@@ -22,5 +23,4 @@
           </tr>
         </tbody>
     </table>
-    <input type="button" (click)="prueba()">
 </div>
