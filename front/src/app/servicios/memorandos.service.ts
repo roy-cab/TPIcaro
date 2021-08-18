@@ -35,7 +35,7 @@ export class MemorandosService {
 
   //post usuario
   postIdUsuario(unUsuario: any) {
-    console.log(unUsuario)
+    // console.log(unUsuario)
     return this.http.post(this.urlGetIdUsuario, JSON.parse(unUsuario));
   }
 

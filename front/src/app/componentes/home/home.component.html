@@ -6,7 +6,7 @@
             <!-- <th scope="col">Id</th> -->
             <th scope="col">Bandeja</th>
             <th scope="col">Remitente</th>
-            <th scope="col">Destinatario</th>
+            <th scope="col">Destinatarios</th>
             <th scope="col">Mensaje</th>
             <th scope="col">Fecha de Envio</th>
           </tr>
@@ -15,11 +15,11 @@
           <tr *ngFor="let memorando of ListaMemorandos">
             <!-- <th>{{memorando.Id}}</th>
             <td>{{memorando.IdDetalle}}</td> -->
-            <td>{{memorando.Tipo}}</td>
-            <td>{{memorando.Remitente}}</td>
-            <td>{{memorando.Destinatario}}</td>
-            <td>{{memorando.Mensaje}}</td>
-            <td>{{memorando.FechaEnvio}}</td>
+            <td>{{memorando._tipo}}</td>
+            <td>{{memorando._remitente}}</td>
+            <td>{{memorando._destinatario}}</td>
+            <td>{{memorando._mensaje}}</td>
+            <td>{{memorando._fechaenvio.getFullYear() + "/" + (memorando._fechaenvio.getMonth()+1) + "/" + memorando._fechaenvio.getDate()}}</td>
           </tr>
         </tbody>
     </table>
