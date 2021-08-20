@@ -14,7 +14,7 @@ export class MemorandosService {
   constructor(private http: HttpClient) { }
 
   //get memorandos
-  getMemorandos(){
+  getMemorandos() {
     return this.http.get(this.url);
   }
 
@@ -24,26 +24,25 @@ export class MemorandosService {
   }
 
   // get usuarios
-  getUsuarios(){
+  getUsuarios() {
     return this.http.get(this.urlUsers);
   }
 
   //post usuario
-  postUsuario(unUsuario: any){
+  postUsuario(unUsuario: any) {
     return this.http.post(this.urlNuevoUsuario, unUsuario);
   }
 
-    //post usuario
-    postIdUsuario(unUsuario: any){
-      console.log(unUsuario)
-      return this.http.post(this.urlGetIdUsuario, JSON.parse(unUsuario));
-    }
+  //post usuario
+  postIdUsuario(unUsuario: any) {
+    // console.log(unUsuario)
+    return this.http.post(this.urlGetIdUsuario, JSON.parse(unUsuario));
+  }
 
-  addMensaje(memorando:Memorandos)
-  {
+  addMensaje(memorando: Memorandos) {
     return this.http.post(this.url, memorando);
   }
-  
+
 }
 
 export class Memorandos{
@@ -94,17 +93,17 @@ export class Memorandos{
       return this._mensaje;
     }
   public set mensaje(value: String) {
-      this._mensaje = value;
-    }
+    this._mensaje = value;
+  }
 
-    public get fechaenvio(): Date {
-      return this._fechaenvio;
-    }
-    public set fechaenvio(value: Date) {
-      this._fechaenvio = value;
-    }
-    
-    
+  public get fechaenvio(): Date {
+    return this._fechaenvio;
+  }
+  public set fechaenvio(value: Date) {
+    this._fechaenvio = value;
+  }
+
+
 }
 
 
