@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class MemorandosService {
   url= '/api/memorandos';
   urlUsers= '/api/usuarios';
+  UrlUltimoDetalle='/api/memorandos/ultimodetalle';
   urlNuevoUsuario =  '/api/usuarios/nuevoUsuario';
   urlGetIdUsuario =  '/api/usuarios/getId';
 
@@ -15,6 +16,11 @@ export class MemorandosService {
   //get memorandos
   getMemorandos(){
     return this.http.get(this.url);
+  }
+
+   //get memorandos
+   getUltimoDetalle(){
+    return this.http.get(this.UrlUltimoDetalle);
   }
 
   // get usuarios
@@ -42,13 +48,13 @@ export class MemorandosService {
 
 export class Memorandos{
   private _id:number;
-  private _detalle:String;
+  private _detalle:number;
   private _remitente:String;
   private _destinatario:String;
   private _mensaje:String;
   private _fechaenvio:Date;
 
-  constructor (idmemorando:number,detalle:String,remitente:String,destinatario:String,mensaje:String,fechaenvio:Date){
+  constructor (idmemorando:number,detalle:number,remitente:String,destinatario:String,mensaje:String,fechaenvio:Date){
     this._id = idmemorando;
     this._detalle = detalle;
     this._remitente = remitente;
@@ -64,10 +70,10 @@ export class Memorandos{
         this._id = value;
     }
 
-    public get detalle(): String {
+    public get detalle(): number {
         return this._detalle;
     }
-    public set detalle(value: String) {
+    public set detalle(value: number) {
         this._detalle = value;
     }
     public get remitente(): String {
