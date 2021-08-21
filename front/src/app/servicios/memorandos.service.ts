@@ -10,6 +10,7 @@ export class MemorandosService {
   urlUsers = '/api/usuarios';
   urlNuevoUsuario = '/api/usuarios/nuevoUsuario';
   urlGetIdUsuario = '/api/usuarios/getId';
+  UrlUltimoDetalle='/api/memorandos/ultimodetalle';
 
   constructor(private http: HttpClient) { }
 
@@ -43,6 +44,10 @@ export class MemorandosService {
     return this.http.post(this.url, memorando);
   }
 
+  //get ultimoDetalle
+  getUltimoDetalle(){
+    return this.http.get(this.UrlUltimoDetalle);
+}
 }
 
 export class Memorandos {
@@ -53,6 +58,7 @@ export class Memorandos {
   private _mensaje: String;
   private _fechaenvio: Date;
   private _tipo: String;
+  
 
   constructor(idmemorando: number, detalle: String, remitente: String, destinatario: String, mensaje: String, fechaenvio: Date, tipo: String) {
     this._id = idmemorando;
@@ -104,7 +110,12 @@ export class Memorandos {
   public set fechaenvio(value: Date) {
     this._fechaenvio = value;
   }
-
+  public get tipo(): String {
+    return this._tipo;
+  }
+  public set tipo(value: String) {
+    this._tipo = value;
+  }
 
 }
 

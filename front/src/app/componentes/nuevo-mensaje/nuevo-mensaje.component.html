@@ -5,7 +5,7 @@
         <div class="col-sm-6">
             <form>
                 <label class="form-label">Seleccione Destinatario</label>
-                <select>
+                <select [(ngModel)]="destinatario" name="destinatario">
                     <!-- <option>{{usuarios.UsuarioDestinatario}}</option> -->
                     <option *ngFor="let usuarios of ListaUsuarios" value="{{usuarios.IdUsuario}}">{{usuarios.NombreUsuario}}</option>
                 </select>
@@ -22,4 +22,5 @@
                 <button class="bt btn-primary" (click)="enviar()">Enviar</button>
             </form>
         </div>
+        <input type="button" (click)="prueba()">
 </div>

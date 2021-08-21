@@ -16,6 +16,19 @@ router.get('/',(req,res)=>{
     })
 });
 
+//get ultimoDetalle
+router.get('/ultimodetalle',(req,res)=>{
+    let sql='SELECT IdDetalle FROM tpicaro.detallememorandos order by IdDetalle desc limit 1;'
+    conexion.query(sql,(err, rows, fields)=>{
+        if(err) throw err;
+        
+        else{
+            // console.log(rows[0])
+            res.status(200).send(rows[0].IdDetalle.toString());
+        }
+    })
+});
+
 //post memorandos
 router.post('/getMemorandos',(req,res)=>{
     console.log("Id usuario logueado para consultar memorandos: "+req.body.IdUsuario )
@@ -47,13 +60,13 @@ router.post('/getMemorandos',(req,res)=>{
 
 // enviar mensaje
 router.post('/',(req,res)=>{
-    const {_detalle,_remitente,_destinatario,_mensaje } = req.body
-
-    let sql = `insert into DetalleMemorandos(IdDetalle, UsuarioRemitente, UsuarioDestinatario,Mensaje,FechaEnvio) values('${_detalle}','${_remitente}','${_destinatario}','${_mensaje}', NOW())`
+    let sql = 'insert into DetalleMemorandos(IdDetalle, UsuarioRemitente, UsuarioDestinatario,Mensaje,FechaEnvio) values(' + req.body._detalle + ',' + req.body._remitente + ',' + req.body._destinatario + ',"' + req.body._mensaje + '", now())'
+    console.log(sql)
     conexion.query(sql, (err, rows, fields)=>{
         if(err) throw err
         else{
-            res.json({status: 'mensaje enviado'})
+            console.log("mensaje enviado")
+            res.status(200).send("OK");
         }
     })
 });

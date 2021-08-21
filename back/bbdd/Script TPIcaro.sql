@@ -15,7 +15,7 @@ IdMemorando INT PRIMARY KEY AUTO_INCREMENT NOT NUll,
 IdDetalle INT
 );
 CREATE TABLE tpIcaro.DetalleMemorandos (
-Id INT PRIMARY KEY,
+Id INT PRIMARY KEY AUTO_INCREMENT NOT NUll,
 IdDetalle INT,
 UsuarioRemitente INT,
 UsuarioDestinatario INT,
