@@ -16,9 +16,25 @@ router.get('/',(req,res)=>{
     })
 });
 
-//get ultimoDetalle
-router.get('/ultimodetalle',(req,res)=>{
-    let sql='SELECT IdDetalle FROM tpicaro.detallememorandos order by IdDetalle desc limit 1;'
+//post memorandos
+router.post('/getMemorandos',(req,res)=>{
+    console.log("Id usuario logueado para consultar memorandos: "+req.body.IdUsuario )
+    let sql='select dm.IdDetalle IdMemorando, dest.NombreUsuario Destinatario, remi.NombreUsuario Remitente, \
+    dm.Mensaje, date(dm.FechaEnvio) FechaEnvio, "Enviado" Tipo \
+    from detallememorandos dm \
+    left join usuarios dest on dest.IdUsuario = dm.UsuarioDestinatario \
+    left join usuarios remi on remi.IdUsuario = dm.UsuarioRemitente \
+    where dm.UsuarioRemitente = ' + req.body.IdUsuario +
+    
+    ' union \
+    \
+    select dm.IdDetalle IdMemorando, dest.NombreUsuario Destinatario, remi.NombreUsuario Remitente,  \
+    dm.Mensaje, date(dm.FechaEnvio) FechaEnvio, "Recibido" Tipo \
+    from detallememorandos dm  \
+    left join usuarios dest on dest.IdUsuario = dm.UsuarioDestinatario \
+    left join usuarios remi on remi.IdUsuario = dm.UsuarioRemitente \
+    where dm.UsuarioDestinatario = '+ req.body.IdUsuario
+    
     conexion.query(sql,(err, rows, fields)=>{
         if(err) throw err;
         
@@ -31,10 +47,9 @@ router.get('/ultimodetalle',(req,res)=>{
 
 // enviar mensaje
 router.post('/',(req,res)=>{
-    const {_detalle,_remitente,_destinatario} = req.params;
-    const {_mensaje} = req.body;
+    const {_detalle,_remitente,_destinatario,_mensaje } = req.body
 
-    let sql = `insert into tpicaro.detallememorandos(IdDetalle, UsuarioRemitente, UsuarioDestinatario,Mensaje,FechaEnvio) values('${_detalle}','${_remitente}','${_destinatario}','${_mensaje}', NOW())`
+    let sql = `insert into DetalleMemorandos(IdDetalle, UsuarioRemitente, UsuarioDestinatario,Mensaje,FechaEnvio) values('${_detalle}','${_remitente}','${_destinatario}','${_mensaje}', NOW())`
     conexion.query(sql, (err, rows, fields)=>{
         if(err) throw err
         else{

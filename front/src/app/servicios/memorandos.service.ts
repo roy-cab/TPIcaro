@@ -5,11 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MemorandosService {
-  url= '/api/memorandos';
-  urlUsers= '/api/usuarios';
-  UrlUltimoDetalle='/api/memorandos/ultimodetalle';
-  urlNuevoUsuario =  '/api/usuarios/nuevoUsuario';
-  urlGetIdUsuario =  '/api/usuarios/getId';
+  url = '/api/memorandos';
+  urlMemos = "/api/memorandos/getMemorandos"
+  urlUsers = '/api/usuarios';
+  urlNuevoUsuario = '/api/usuarios/nuevoUsuario';
+  urlGetIdUsuario = '/api/usuarios/getId';
 
   constructor(private http: HttpClient) { }
 
@@ -18,9 +18,9 @@ export class MemorandosService {
     return this.http.get(this.url);
   }
 
-   //get memorandos
-   getUltimoDetalle(){
-    return this.http.get(this.UrlUltimoDetalle);
+  //get memorandos prueba
+  postMemorandos(id: any) {
+    return this.http.post(this.urlMemos, { "IdUsuario" : 1});
   }
 
   // get usuarios
@@ -45,53 +45,55 @@ export class MemorandosService {
 
 }
 
-export class Memorandos{
-  private _id:number;
-  private _detalle:number;
-  private _remitente:String;
-  private _destinatario:String;
-  private _mensaje:String;
-  private _fechaenvio:Date;
+export class Memorandos {
+  private _id: number;
+  private _detalle: String;
+  private _remitente: String;
+  private _destinatario: String;
+  private _mensaje: String;
+  private _fechaenvio: Date;
+  private _tipo: String;
 
-  constructor (idmemorando:number,detalle:number,remitente:String,destinatario:String,mensaje:String,fechaenvio:Date){
+  constructor(idmemorando: number, detalle: String, remitente: String, destinatario: String, mensaje: String, fechaenvio: Date, tipo: String) {
     this._id = idmemorando;
     this._detalle = detalle;
     this._remitente = remitente;
     this._destinatario = destinatario;
     this._mensaje = mensaje;
     this._fechaenvio = fechaenvio;
-    }
+    this._tipo = tipo;
+  }
 
-    public get idmemorando(): number {
-        return this._id;
-    }
-    public set idmemorando(value: number) {
-        this._id = value;
-    }
+  public get idmemorando(): number {
+    return this._id;
+  }
+  public set idmemorando(value: number) {
+    this._id = value;
+  }
 
-    public get detalle(): number {
-        return this._detalle;
-    }
-    public set detalle(value: number) {
-        this._detalle = value;
-    }
-    public get remitente(): String {
-      return this._remitente;
-    }
-    public set remitente(value: String) {
-      this._remitente = value;
-    }
+  public get detalle(): String {
+    return this._detalle;
+  }
+  public set detalle(value: String) {
+    this._detalle = value;
+  }
+  public get remitente(): String {
+    return this._remitente;
+  }
+  public set remitente(value: String) {
+    this._remitente = value;
+  }
 
-    public get destinatario(): String {
-        return this._destinatario;
-    }
-    public set destinatario(value: String) {
-        this._destinatario = value;
-    }
+  public get destinatario(): String {
+    return this._destinatario;
+  }
+  public set destinatario(value: String) {
+    this._destinatario = value;
+  }
 
-    public get mensaje(): String {
-      return this._mensaje;
-    }
+  public get mensaje(): String {
+    return this._mensaje;
+  }
   public set mensaje(value: String) {
     this._mensaje = value;
   }
