@@ -7,8 +7,13 @@
                 <label class="form-label">Seleccione Destinatario</label>
                 <select [(ngModel)]="destinatario" name="destinatario">
                     <!-- <option>{{usuarios.UsuarioDestinatario}}</option> -->
-                    <option *ngFor="let usuarios of ListaUsuarios" value="{{usuarios.IdUsuario}}">{{usuarios.NombreUsuario}}</option>
+                    <option onchange="enviar_valores(this.value)" id="NombreDestinatario" *ngFor="let usuarios of ListaUsuarios" value="{{usuarios.IdUsuario}}" >{{usuarios.NombreUsuario}}</option>
                 </select>
+                <button class="bt btn-primary" (click)="agregarDestinatario()">Agregar</button>
+                <br>
+                <br>
+                <label class="form-label">Destinatarios:</label>
+                <input *ngFor="let destinatario of ListaDestinatarios"  type="text" class="form-control" name="nombre" disabled="false">
                 <br>
                 <br>
                 <label class="form-label">Asunto</label>
@@ -22,5 +27,4 @@
                 <button class="bt btn-primary" (click)="enviar()">Enviar</button>
             </form>
         </div>
-        <input type="button" (click)="prueba()">
 </div>

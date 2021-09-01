@@ -1,6 +1,6 @@
 import { getAttrsForDirectiveMatching } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
-import {MemorandosService, Memorandos} from '../../servicios/memorandos.service'
+import {MemorandosService, Memorandos,Destinatarios} from '../../servicios/memorandos.service'
 import { Router } from '@angular/router';
 // import { HomeComponent } from '../home/home.component';
 
@@ -17,12 +17,14 @@ export class NuevoMensajeComponent implements OnInit {
   memorando = new Memorandos(0,"","","","",this.fecha,"")
 
   UltimoMemorando: any;
-  ListaDestinatarios : Memorandos[];
+  
+  ListaDestinatarios = this.MemorandoService.ListaDestinatarios;
   ListaUsuarios : any[] = [];
   IdRemitente: any;
   loading :boolean = false;
   destinatario:any;
-
+  // NombreDestinatario:any;
+  lista_dest: any[] = [];
 
   constructor(private MemorandoService: MemorandosService, private router:Router) { }
 
@@ -86,4 +88,20 @@ export class NuevoMensajeComponent implements OnInit {
     this.MemorandoService.addMensaje(mensaje).subscribe();
     this.router.navigate(['/home']);
   }
+
+  enviar_valores(valor:string){
+  location.href='buscar.php?valor=' + valor;
+  console.log(valor)
+  }
+
+  agregarDestinatario(){
+    
+    let NombreDestinatario  = "";
+    let destElegido = new Destinatarios(this.destinatario,NombreDestinatario);
+    console.log(this.destinatario)
+    this.MemorandoService.crearListaDest(destElegido);
+    
+  }
+  
+  
 }
