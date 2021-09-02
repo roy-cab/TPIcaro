@@ -5,15 +5,17 @@
         <div class="col-sm-6">
             <form>
                 <label class="form-label">Seleccione Destinatario</label>
-                <select [(ngModel)]="destinatario" name="destinatario">
+                <select [(ngModel)]="destinatario"  name="destinatario" (change)="enviar_valores()">
                     <!-- <option>{{usuarios.UsuarioDestinatario}}</option> -->
-                    <option onchange="enviar_valores(this.value)" id="NombreDestinatario" *ngFor="let usuarios of ListaUsuarios" value="{{usuarios.IdUsuario}}" >{{usuarios.NombreUsuario}}</option>
+                    <option id="NombreDestinatario" *ngFor="let usuarios of ListaUsuarios" value={{usuarios.IdUsuario}}>{{usuarios.NombreUsuario}}</option>
                 </select>
                 <button class="bt btn-primary" (click)="agregarDestinatario()">Agregar</button>
                 <br>
                 <br>
                 <label class="form-label">Destinatarios:</label>
-                <input *ngFor="let destinatario of ListaDestinatarios"  type="text" class="form-control" name="nombre" disabled="false">
+                <br>
+                <br>
+                {{listaAuxDest}}
                 <br>
                 <br>
                 <label class="form-label">Asunto</label>

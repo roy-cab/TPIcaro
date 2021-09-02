@@ -12,6 +12,7 @@ export class MemorandosService {
   urlGetIdUsuario = '/api/usuarios/getId';
   UrlUltimoDetalle = '/api/memorandos/ultimodetalle';
   ListaDestinatarios : Destinatarios[] = [];
+  subListaDestinatarios:any;
 
   constructor(private http: HttpClient) { }
 
@@ -22,11 +23,7 @@ export class MemorandosService {
 
   //get memorandos prueba
   postMemorandos(id: any) {
-<<<<<<< HEAD
-    return this.http.post(this.urlMemos, { "IdUsuario" : id});
-=======
     return this.http.post(this.urlMemos, { "IdUsuario": id });
->>>>>>> 761b8aa594b85482f9b363fae700e96b91c50170
   }
 
   // get usuarios
@@ -58,6 +55,7 @@ export class MemorandosService {
     this.ListaDestinatarios.push(destinatario);
     console.log(JSON.stringify(this.ListaDestinatarios));
     console.log(this.ListaDestinatarios.length);
+    this.subListaDestinatarios = this.ListaDestinatarios.map(dest => dest.NombreDestinatario)
   }
 
 
