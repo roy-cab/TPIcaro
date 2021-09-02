@@ -10,7 +10,8 @@ export class MemorandosService {
   urlUsers = '/api/usuarios';
   urlNuevoUsuario = '/api/usuarios/nuevoUsuario';
   urlGetIdUsuario = '/api/usuarios/getId';
-  UrlUltimoDetalle='/api/memorandos/ultimodetalle';
+  UrlUltimoDetalle = '/api/memorandos/ultimodetalle';
+  ListaDestinatarios : Destinatarios[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +22,11 @@ export class MemorandosService {
 
   //get memorandos prueba
   postMemorandos(id: any) {
+<<<<<<< HEAD
     return this.http.post(this.urlMemos, { "IdUsuario" : id});
+=======
+    return this.http.post(this.urlMemos, { "IdUsuario": id });
+>>>>>>> 761b8aa594b85482f9b363fae700e96b91c50170
   }
 
   // get usuarios
@@ -45,9 +50,17 @@ export class MemorandosService {
   }
 
   //get ultimoDetalle
-  getUltimoDetalle(){
+  getUltimoDetalle() {
     return this.http.get(this.UrlUltimoDetalle);
-}
+  }
+
+  crearListaDest(destinatario: Destinatarios){
+    this.ListaDestinatarios.push(destinatario);
+    console.log(JSON.stringify(this.ListaDestinatarios));
+    console.log(this.ListaDestinatarios.length);
+  }
+
+
 }
 
 export class Memorandos {
@@ -58,7 +71,7 @@ export class Memorandos {
   private _mensaje: String;
   private _fechaenvio: Date;
   private _tipo: String;
-  
+
 
   constructor(idmemorando: number, detalle: String, remitente: String, destinatario: String, mensaje: String, fechaenvio: Date, tipo: String) {
     this._id = idmemorando;
@@ -119,7 +132,32 @@ export class Memorandos {
 
 }
 
+export class Destinatarios {
+  private _Iddestinatario: number;
+  private _NombreDestinatario: string;
 
+  constructor(Iddestinatario:number,NombreDestinatario:string){
+    this._Iddestinatario = Iddestinatario;
+    this._NombreDestinatario = NombreDestinatario;
+
+  }
+
+  public get NombreDestinatario(): string {
+    return this._NombreDestinatario;
+  }
+  public set NombreDestinatario(value: string) {
+    this._NombreDestinatario = value;
+  }
+
+
+  public get destinatario(): number {
+    return this._Iddestinatario;
+  }
+  public set destinatario(value: number) {
+    this._Iddestinatario = value;
+  }
+
+}
 
 
 
