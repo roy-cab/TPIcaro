@@ -22,7 +22,11 @@ export class MemorandosService {
 
   //get memorandos prueba
   postMemorandos(id: any) {
+<<<<<<< HEAD
     return this.http.post(this.urlMemos, { "IdUsuario": id });
+=======
+    return this.http.post(this.urlMemos, { "IdUsuario" : id});
+>>>>>>> beffe2b13fbbb98eba5917e6b5420e416f22c02d
   }
 
   // get usuarios
